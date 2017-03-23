@@ -413,26 +413,37 @@ public class formpelanggan extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
-        double express = 0, diskon = 0,reguler = 0, total_harga=0;
+        String n,nt,jm = null;
+        float a;
+        double b = 0;
+        int c;
+        
+        n = jTextField1.getText();
+        nt = jTextField2.getText();
+        a = Float.parseFloat(jTextField3.getText());
+        c = jSlider1.getValue();
+        
+        if(jRadioButton1.isSelected()==true){
+            jm = "Reguler";
+            b = (11500*a)-((11500*a*c)/100);
+        }
+        else if(jRadioButton2.isSelected()==true){
+            jm="Express";
+            b = ((11500*1.5)*a)-((11500*1.5)*a*c/100);
+        }
+        
+        
+        
         if(jTextField1.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Nama Tidak Boleh Kosong");        
         }else if(jTextField2.getText().equals("")){
             JOptionPane.showMessageDialog(null, "No. Telepone Tidak Boleh Kosong");        
         }else if(jTextField3.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Berat Barang Tidak Boleh Kosong");
-        }else if(!jRadioButton2.isSelected() && !jRadioButton1.isSelected()){
+        }else if(!jRadioButton1.isSelected() && !jRadioButton2.isSelected()){
             JOptionPane.showMessageDialog(null, "Jenis Jasa Belum Terpilih");
-        }else{
-          diskon = jSlider1.getValue()/100;
-          if(jRadioButton2.isSelected()){
-              express = Integer.parseInt(jTextField3.getText())*11500;  
-              total_harga = express - (diskon*express);
-          }else{
-              reguler = (11500*1.5)*Integer.parseInt(jTextField3.getText());
-              total_harga = reguler - (diskon*reguler);
-          }
-          jTextField4.setText(String.valueOf(total_harga));
-        } 
+        }
+        jTextField4.setText(String.valueOf(+b));
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
